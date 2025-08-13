@@ -26,7 +26,7 @@ public class ProductDetailsPage extends ProductDetailsPageBase {
     @FindBy(xpath = "//android.widget.TextView[contains(@text, 'BACK TO PRODUCTS')]")
     private ExtendedWebElement backToAllProductsButton;
 
-    @FindBy(xpath = "//android.view.ViewGroup[@content-desc=\"test-Description\"]//android.widget.TextView[2]")
+    @ExtendedFindBy(androidUIAutomator = "new UiSelector().description(\"test-Description\").childSelector(new UiSelector().className(\"android.widget.TextView\").instance(1))")
     private ExtendedWebElement subtitleLabel;
 
     public ProductDetailsPage(WebDriver driver) {

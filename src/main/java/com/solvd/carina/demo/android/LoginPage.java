@@ -25,7 +25,7 @@ public class LoginPage extends LoginPageBase {
     @FindBy(xpath = "//android.widget.TextView[@text=\"%s\"]")
     private ExtendedWebElement selectUserCredentialsButton;
 
-    @FindBy(xpath = "//android.view.ViewGroup[@content-desc=\"test-Error message\"]//android.widget.TextView")
+    @ExtendedFindBy(androidUIAutomator = "new UiSelector().description(\"test-Error message\").childSelector(new UiSelector().className(\"android.widget.TextView\"))")
     private ExtendedWebElement errorMessage;
 
     public LoginPage(WebDriver driver) {

@@ -16,10 +16,10 @@ public class ProductListItemComponent extends ProductListItemComponentBase {
     @ExtendedFindBy(accessibilityId = "test-Price")
     private ExtendedWebElement price;
 
-    @FindBy(xpath = "//android.widget.TextView[@text=\"ADD TO CART\"]")
+    @FindBy(xpath = "//android.widget.TextView[contains(@text, 'ADD TO CART')]")
     private ExtendedWebElement addToCartButton;
 
-    @FindBy(xpath = "//android.widget.TextView[@text=\"REMOVE\"]")
+    @FindBy(xpath = "//android.widget.TextView[contains(@text, 'REMOVE')]")
     private ExtendedWebElement removeFromCartButton;
 
     public ProductListItemComponent(WebDriver driver, SearchContext searchContext) {
