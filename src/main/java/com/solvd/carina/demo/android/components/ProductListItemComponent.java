@@ -1,20 +1,19 @@
 package com.solvd.carina.demo.android.components;
 
-import com.solvd.carina.demo.common.ItemPageBase;
-import com.solvd.carina.demo.common.components.ItemBase;
-import com.zebrunner.carina.utils.factory.ICustomTypePageFactory;
-import com.zebrunner.carina.utils.mobile.IMobileUtils;
+import com.solvd.carina.demo.common.ProductDetailsPageBase;
+import com.solvd.carina.demo.common.components.ProductListItemComponentBase;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-public class Item extends ItemBase implements ICustomTypePageFactory, IMobileUtils {
+public class ProductListItemComponent extends ProductListItemComponentBase {
 
-    @FindBy(xpath = "//android.widget.TextView[@content-desc=\"test-Item title\"]")
+    @ExtendedFindBy(accessibilityId = "test-Item title")
     private ExtendedWebElement name;
 
-    @FindBy(xpath = "//android.widget.TextView[@content-desc=\"test-Price\"]")
+    @ExtendedFindBy(accessibilityId = "test-Price")
     private ExtendedWebElement price;
 
     @FindBy(xpath = "//android.widget.TextView[@text=\"ADD TO CART\"]")
@@ -23,13 +22,13 @@ public class Item extends ItemBase implements ICustomTypePageFactory, IMobileUti
     @FindBy(xpath = "//android.widget.TextView[@text=\"REMOVE\"]")
     private ExtendedWebElement removeFromCartButton;
 
-    public Item(WebDriver driver, SearchContext searchContext) {
+    public ProductListItemComponent(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
-    public ItemPageBase clickOnName() {
+    public ProductDetailsPageBase clickOnName() {
         name.click();
-        return initPage(ItemPageBase.class);
+        return initPage(ProductDetailsPageBase.class);
     }
 
     public String getElementName() {
@@ -48,7 +47,7 @@ public class Item extends ItemBase implements ICustomTypePageFactory, IMobileUti
         addToCartButton.click();
     }
 
-    public Double getElementPrice() {
+    public Double getProductPrice() {
         swipe(price);
         return Double.parseDouble(price.getText().replaceAll("[^0-9.]", ""));
     }

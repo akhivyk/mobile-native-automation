@@ -2,6 +2,7 @@ package com.solvd.carina.demo.ios;
 
 import com.solvd.carina.demo.common.CartPageBase;
 import com.solvd.carina.demo.common.CheckoutPageBase;
+import com.solvd.carina.demo.common.OverviewPageBase;
 import com.solvd.carina.demo.ios.components.CartItem;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
@@ -24,7 +25,7 @@ public class CartPage extends CartPageBase {
         super(driver);
     }
 
-    public CartItem getItem(String itemDesc) {
+    public CartItem getItemByDescription(String itemDesc) {
         return cartItems.stream()
                 .filter(item -> itemDesc.equals(item.getTextFromDescription()))
                 .findFirst()
@@ -38,5 +39,13 @@ public class CartPage extends CartPageBase {
     public CheckoutPageBase clickCheckoutButton() {
         checkoutButton.click();
         return initPage(getDriver(), CheckoutPageBase.class);
+    }
+
+    public OverviewPageBase completeCheckout(CartPageBase cartPage, String firstName, String lastName, String zipCode) {
+        CheckoutPageBase checkoutPage = cartPage.clickCheckoutButton();
+        checkoutPage.inputFirstName(firstName);
+        checkoutPage.inputLastName(lastName);
+        checkoutPage.inputZipCode(zipCode);
+        return checkoutPage.clickContinueButton();
     }
 }

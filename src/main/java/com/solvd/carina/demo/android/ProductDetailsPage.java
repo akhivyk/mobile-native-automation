@@ -1,34 +1,35 @@
 package com.solvd.carina.demo.android;
 
-import com.solvd.carina.demo.common.ItemPageBase;
-import com.solvd.carina.demo.common.MainPageBase;
+import com.solvd.carina.demo.common.ProductDetailsPageBase;
+import com.solvd.carina.demo.common.ProductListPageBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
-@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = ItemPageBase.class)
-public class ItemPage extends ItemPageBase {
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = ProductDetailsPageBase.class)
+public class ProductDetailsPage extends ProductDetailsPageBase {
 
-    @FindBy(xpath = "//android.view.ViewGroup[@content-desc=\"test-Image Container\"]")
+    @ExtendedFindBy(accessibilityId = "test-Image Container")
     private ExtendedWebElement itemPicture;
 
-    @FindBy(xpath = "//android.view.ViewGroup[@content-desc=\"test-Description\"]")
+    @ExtendedFindBy(accessibilityId = "test-Description")
     private ExtendedWebElement itemDescription;
 
-    @FindBy(xpath = "//android.widget.TextView[@content-desc=\"test-Price\"]")
+    @ExtendedFindBy(accessibilityId = "test-Price")
     private ExtendedWebElement itemPrice;
 
-    @FindBy(xpath = "//android.view.ViewGroup[@content-desc=\"test-ADD TO CART\"]")
+    @ExtendedFindBy(accessibilityId = "test-ADD TO CART")
     private ExtendedWebElement addToCartButton;
 
-    @FindBy(xpath = "//android.widget.TextView[@text=\"BACK TO PRODUCTS\"]")
+    @FindBy(xpath = "//android.widget.TextView[contains(@text, 'BACK TO PRODUCTS')]")
     private ExtendedWebElement backToAllProductsButton;
 
     @FindBy(xpath = "//android.view.ViewGroup[@content-desc=\"test-Description\"]//android.widget.TextView[2]")
     private ExtendedWebElement subtitleLabel;
 
-    public ItemPage(WebDriver driver) {
+    public ProductDetailsPage(WebDriver driver) {
         super(driver);
     }
 
@@ -56,8 +57,8 @@ public class ItemPage extends ItemPageBase {
         addToCartButton.click();
     }
 
-    public MainPageBase clickBackToAllProductsButton() {
+    public ProductListPageBase clickBackToAllProductsButton() {
         backToAllProductsButton.click();
-        return initPage(getDriver(), MainPageBase.class);
+        return initPage(getDriver(), ProductListPageBase.class);
     }
 }

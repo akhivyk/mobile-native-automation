@@ -19,7 +19,7 @@ public abstract class LoginPageBase extends AbstractPage {
 
     public abstract void inputUsername(String username);
 
-    public abstract MainPageBase clickLoginButton();
+    public abstract ProductListPageBase clickLoginButton();
 
     public abstract void selectUser(UserType userType);
 

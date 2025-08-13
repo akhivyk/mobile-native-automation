@@ -1,19 +1,19 @@
 package com.solvd.carina.demo.android;
 
 import com.solvd.carina.demo.common.LoginPageBase;
-import com.solvd.carina.demo.common.MenuPageBase;
+import com.solvd.carina.demo.common.SideBarMenuPageBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
 
-@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = MenuPageBase.class)
-public class MenuPage extends MenuPageBase {
+@DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = SideBarMenuPageBase.class)
+public class SideBarMenuPage extends SideBarMenuPageBase {
 
-    @FindBy(xpath = "//android.view.ViewGroup[@content-desc=\"test-LOGOUT\"]")
+    @ExtendedFindBy(accessibilityId = "test-LOGOUT")
     private ExtendedWebElement logoutButton;
 
-    public MenuPage(WebDriver driver) {
+    public SideBarMenuPage(WebDriver driver) {
         super(driver);
     }
 

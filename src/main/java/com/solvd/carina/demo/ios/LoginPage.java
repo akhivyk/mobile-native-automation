@@ -1,13 +1,12 @@
 package com.solvd.carina.demo.ios;
 
 import com.solvd.carina.demo.common.LoginPageBase;
-import com.solvd.carina.demo.common.MainPageBase;
+import com.solvd.carina.demo.common.ProductListPageBase;
 import com.solvd.carina.demo.enums.UserType;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
 
 @DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = LoginPageBase.class)
 public class LoginPage extends LoginPageBase {
@@ -51,9 +50,9 @@ public class LoginPage extends LoginPageBase {
         usernameInput.type(username);
     }
 
-    public MainPageBase clickLoginButton() {
+    public ProductListPageBase clickLoginButton() {
         loginButton.click();
-        return initPage(getDriver(), MainPageBase.class);
+        return initPage(getDriver(), ProductListPageBase.class);
     }
 
     public void selectUser(UserType userType) {

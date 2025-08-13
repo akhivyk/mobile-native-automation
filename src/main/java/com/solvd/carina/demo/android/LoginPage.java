@@ -1,23 +1,25 @@
 package com.solvd.carina.demo.android;
 
 import com.solvd.carina.demo.common.LoginPageBase;
-import com.solvd.carina.demo.common.MainPageBase;
+import com.solvd.carina.demo.common.ProductListPageBase;
+import com.solvd.carina.demo.constants.TimeConstant;
 import com.solvd.carina.demo.enums.UserType;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
+import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = LoginPageBase.class)
 public class LoginPage extends LoginPageBase {
 
-    @FindBy(xpath = "//android.widget.EditText[@content-desc=\"test-Username\"]")
+    @ExtendedFindBy(accessibilityId = "test-Username")
     private ExtendedWebElement usernameInput;
 
-    @FindBy(xpath = "//android.widget.EditText[@content-desc=\"test-Password\"]")
+    @ExtendedFindBy(accessibilityId = "test-Password")
     private ExtendedWebElement passwordInput;
 
-    @FindBy(xpath = "//android.view.ViewGroup[@content-desc=\"test-LOGIN\"]")
+    @ExtendedFindBy(accessibilityId = "test-LOGIN")
     private ExtendedWebElement loginButton;
 
     @FindBy(xpath = "//android.widget.TextView[@text=\"%s\"]")
@@ -31,15 +33,15 @@ public class LoginPage extends LoginPageBase {
     }
 
     public boolean isUsernameInputPresent() {
-        return usernameInput.isElementPresent(1);
+        return usernameInput.isElementPresent(TimeConstant.SMALL_TIMEOUT);
     }
 
     public boolean isPasswordInputPresent() {
-        return passwordInput.isElementPresent(1);
+        return passwordInput.isElementPresent(TimeConstant.SMALL_TIMEOUT);
     }
 
     public boolean isLoginButtonPresent() {
-        return loginButton.isElementPresent(1);
+        return loginButton.isElementPresent(TimeConstant.SMALL_TIMEOUT);
     }
 
     public void inputPassword(String password) {
@@ -50,9 +52,9 @@ public class LoginPage extends LoginPageBase {
         usernameInput.type(username);
     }
 
-    public MainPageBase clickLoginButton() {
+    public ProductListPageBase clickLoginButton() {
         loginButton.click();
-        return initPage(getDriver(), MainPageBase.class);
+        return initPage(getDriver(), ProductListPageBase.class);
     }
 
     public void selectUser(UserType userType) {

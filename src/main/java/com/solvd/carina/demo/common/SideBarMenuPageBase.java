@@ -3,9 +3,9 @@ package com.solvd.carina.demo.common;
 import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 
-public abstract class MenuPageBase extends AbstractPage {
+public abstract class SideBarMenuPageBase extends AbstractPage {
 
-    public MenuPageBase(WebDriver driver) {
+    public SideBarMenuPageBase(WebDriver driver) {
         super(driver);
     }
 

@@ -1,13 +1,13 @@
 package com.solvd.carina.demo.ios;
 
-import com.solvd.carina.demo.ios.components.SortingContainer;
+import com.solvd.carina.demo.common.ProductListPageBase;
+import com.solvd.carina.demo.ios.components.SortComponent;
 import com.solvd.carina.demo.common.CartPageBase;
-import com.solvd.carina.demo.common.ItemPageBase;
-import com.solvd.carina.demo.common.MainPageBase;
-import com.solvd.carina.demo.common.MenuPageBase;
-import com.solvd.carina.demo.common.components.ItemBase;
+import com.solvd.carina.demo.common.ProductDetailsPageBase;
+import com.solvd.carina.demo.common.SideBarMenuPageBase;
+import com.solvd.carina.demo.common.components.ProductListItemComponentBase;
 import com.solvd.carina.demo.enums.SortingType;
-import com.solvd.carina.demo.ios.components.Item;
+import com.solvd.carina.demo.ios.components.ProductListItemComponent;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
@@ -17,14 +17,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = MainPageBase.class)
-public class MainPage extends MainPageBase {
+@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = ProductListPageBase.class)
+public class ProductListPage extends ProductListPageBase {
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeStaticText[`label == \"PRODUCTS\"`]")
     private ExtendedWebElement titleLabel;
 
     @ExtendedFindBy(accessibilityId = "test-Item")
-    private List<Item> items;
+    private List<ProductListItemComponent> items;
 
     @ExtendedFindBy(accessibilityId = "test-Menu")
     private ExtendedWebElement menuButton;
@@ -35,7 +35,7 @@ public class MainPage extends MainPageBase {
     @ExtendedFindBy(accessibilityId = "test-Modal Selector Button")
     private ExtendedWebElement sortingButton;
 
-    public MainPage(WebDriver driver) {
+    public ProductListPage(WebDriver driver) {
         super(driver);
     }
 
@@ -55,27 +55,27 @@ public class MainPage extends MainPageBase {
         return items.isEmpty();
     }
 
-    public ItemPageBase clickOnItem(String itemName) {
+    public ProductDetailsPageBase openProductItem(String itemName) {
         items.forEach(a ->System.out.println(a.getElementName()));
         return items.stream()
                 .filter(item -> itemName.equalsIgnoreCase(item.getElementName()))
                 .findFirst()
-                .map(Item::clickOnName)
+                .map(ProductListItemComponent::clickOnName)
                 .orElseThrow(() -> new NoSuchElementException("Item not found: " + itemName));
     }
 
-    public Item findItemOnPage(String itemName) {
+    public ProductListItemComponent findItemOnPage(String itemName) {
         return items.stream()
                 .filter(item -> itemName.equalsIgnoreCase(item.getElementName()))
                 .findFirst()
                 .orElseThrow(() -> new NoSuchElementException("Item not found: " + itemName));
     }
 
-    public MenuPageBase clickMenuButton() {
+    public SideBarMenuPageBase openSideBarMenu() {
         int x = (int) (menuButton.getLocation().getX() + menuButton.getSize().getWidth() * 0.54);
         int y = (int) (menuButton.getLocation().getY() + menuButton.getSize().getHeight() * 0.9);
         tap(x, y);
-        return initPage(getDriver(), MenuPageBase.class);
+        return initPage(getDriver(), SideBarMenuPageBase.class);
     }
 
     public String getCountOfItemInCart() {
@@ -91,11 +91,19 @@ public class MainPage extends MainPageBase {
 
     public void selectSortOption(SortingType sortingType) {
         sortingButton.click();
-        SortingContainer sortingContainer = new SortingContainer(getDriver());
+        SortComponent sortingContainer = new SortComponent(getDriver());
         sortingContainer.selectSortOption(sortingType);
     }
 
-    public List<ItemBase> getItems() {
+    public List<ProductListItemComponentBase> getAllProductItems() {
         return new ArrayList<>(items);
+    }
+
+    public CartPageBase addItemsToCart(ProductListPageBase mainPage, List<String> productNames) {
+        for (String productName : productNames) {
+            ProductListItemComponent productListItemComponent = findItemOnPage(productName);
+            productListItemComponent.clickAddToCartButton();
+        }
+        return clickCartButton();
     }
 }

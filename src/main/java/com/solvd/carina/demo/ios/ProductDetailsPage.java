@@ -1,14 +1,14 @@
 package com.solvd.carina.demo.ios;
 
-import com.solvd.carina.demo.common.ItemPageBase;
-import com.solvd.carina.demo.common.MainPageBase;
+import com.solvd.carina.demo.common.ProductDetailsPageBase;
+import com.solvd.carina.demo.common.ProductListPageBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import org.openqa.selenium.WebDriver;
 
-@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = ItemPageBase.class)
-public class ItemPage extends ItemPageBase {
+@DeviceType(pageType = DeviceType.Type.IOS_PHONE, parentClass = ProductDetailsPageBase.class)
+public class ProductDetailsPage extends ProductDetailsPageBase {
 
     @ExtendedFindBy(accessibilityId = "test-Image Container")
     private ExtendedWebElement itemPicture;
@@ -25,7 +25,7 @@ public class ItemPage extends ItemPageBase {
     @ExtendedFindBy(accessibilityId = "test-BACK TO PRODUCTS")
     private ExtendedWebElement backToAllProductsButton;
 
-    public ItemPage(WebDriver driver) {
+    public ProductDetailsPage(WebDriver driver) {
         super(driver);
     }
 
@@ -53,8 +53,8 @@ public class ItemPage extends ItemPageBase {
         addToCartButton.click();
     }
 
-    public MainPageBase clickBackToAllProductsButton() {
+    public ProductListPageBase clickBackToAllProductsButton() {
         backToAllProductsButton.click();
-        return initPage(getDriver(), MainPageBase.class);
+        return initPage(getDriver(), ProductListPageBase.class);
     }
 }

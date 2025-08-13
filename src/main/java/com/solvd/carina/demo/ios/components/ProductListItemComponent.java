@@ -1,7 +1,7 @@
 package com.solvd.carina.demo.ios.components;
 
-import com.solvd.carina.demo.common.ItemPageBase;
-import com.solvd.carina.demo.common.components.ItemBase;
+import com.solvd.carina.demo.common.ProductDetailsPageBase;
+import com.solvd.carina.demo.common.components.ProductListItemComponentBase;
 import com.zebrunner.carina.utils.factory.ICustomTypePageFactory;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
@@ -10,7 +10,7 @@ import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 
 @ToString
-public class Item extends ItemBase implements ICustomTypePageFactory {
+public class ProductListItemComponent extends ProductListItemComponentBase implements ICustomTypePageFactory {
 
     @ExtendedFindBy(accessibilityId = "test-Item title")
     private ExtendedWebElement name;
@@ -24,13 +24,13 @@ public class Item extends ItemBase implements ICustomTypePageFactory {
     @ExtendedFindBy(accessibilityId = "test-REMOVE")
     private ExtendedWebElement removeFromCartButton;
 
-    public Item(WebDriver driver, SearchContext searchContext) {
+    public ProductListItemComponent(WebDriver driver, SearchContext searchContext) {
         super(driver, searchContext);
     }
 
-    public ItemPageBase clickOnName() {
+    public ProductDetailsPageBase clickOnName() {
         name.click();
-        return initPage(ItemPageBase.class);
+        return initPage(ProductDetailsPageBase.class);
     }
 
     public String getElementName() {
@@ -49,7 +49,7 @@ public class Item extends ItemBase implements ICustomTypePageFactory {
         addToCartButton.click();
     }
 
-    public Double getElementPrice() {
+    public Double getProductPrice() {
         return Double.parseDouble(price.getText().replaceAll("[^0-9.]", ""));
     }
 }
