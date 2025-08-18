@@ -1,10 +1,8 @@
 package com.solvd.carina.demo.common;
 
-import com.zebrunner.carina.utils.mobile.IMobileUtils;
-import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 
-public abstract class CheckoutPageBase extends AbstractPage implements IMobileUtils {
+public abstract class CheckoutPageBase extends BasePage {
 
     public CheckoutPageBase(WebDriver driver) {
         super(driver);

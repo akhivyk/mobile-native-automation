@@ -2,13 +2,11 @@ package com.solvd.carina.demo.common;
 
 import com.solvd.carina.demo.common.components.ProductListItemComponentBase;
 import com.solvd.carina.demo.enums.SortingType;
-import com.zebrunner.carina.utils.mobile.IMobileUtils;
-import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 
 import java.util.List;
 
-public abstract class ProductListPageBase extends AbstractPage implements IMobileUtils {
+public abstract class ProductListPageBase extends BasePage {
     public ProductListPageBase(WebDriver driver) {
         super(driver);
     }
