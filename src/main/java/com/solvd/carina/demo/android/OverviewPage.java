@@ -1,5 +1,6 @@
 package com.solvd.carina.demo.android;
 
+import com.solvd.carina.demo.android.components.TopMainMenu;
 import com.solvd.carina.demo.common.CompletedOrderPageBase;
 import com.solvd.carina.demo.common.OverviewPageBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
@@ -17,6 +18,9 @@ public class OverviewPage extends OverviewPageBase {
     @FindBy(xpath = "//android.widget.TextView[contains(@text, 'Item') and contains (@text, 'total')]")
     private ExtendedWebElement itemTotalPrice;
 
+    @FindBy(xpath = "//android.view.ViewGroup[@content-desc='test-Menu']/..")
+    private TopMainMenu header;
+
     public OverviewPage(WebDriver driver) {
         super(driver);
     }
@@ -31,5 +35,9 @@ public class OverviewPage extends OverviewPageBase {
     public String getItemTotalPrice() {
         swipe(itemTotalPrice);
         return itemTotalPrice.getText().replaceAll("[^0-9.]", "");
+    }
+
+    public TopMainMenu getTopMainMenu() {
+        return header;
     }
 }

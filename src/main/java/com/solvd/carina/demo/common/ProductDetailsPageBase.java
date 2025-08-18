@@ -1,9 +1,8 @@
 package com.solvd.carina.demo.common;
 
-import com.zebrunner.carina.webdriver.gui.AbstractPage;
 import org.openqa.selenium.WebDriver;
 
-public abstract class ProductDetailsPageBase extends AbstractPage {
+public abstract class ProductDetailsPageBase extends BasePage {
 
     public ProductDetailsPageBase(WebDriver driver) {
         super(driver);

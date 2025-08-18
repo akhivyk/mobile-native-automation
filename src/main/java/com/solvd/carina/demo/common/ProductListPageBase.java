@@ -1,6 +1,8 @@
 package com.solvd.carina.demo.common;
 
+import com.solvd.carina.demo.android.components.TopMainMenu;
 import com.solvd.carina.demo.common.components.ProductListItemComponentBase;
+import com.solvd.carina.demo.common.components.TopMainMenuBase;
 import com.solvd.carina.demo.enums.SortingType;
 import org.openqa.selenium.WebDriver;
 
@@ -23,15 +25,11 @@ public abstract class ProductListPageBase extends BasePage {
 
     public abstract ProductListItemComponentBase findItemOnPage(String itemName);
 
-    public abstract SideBarMenuPageBase openSideBarMenu();
-
-    public abstract String getCountOfItemInCart();
-
-    public abstract CartPageBase clickCartButton();
-
     public abstract void selectSortOption(SortingType sortingType);
 
     public abstract List<ProductListItemComponentBase> getAllProductItems();
 
     public abstract CartPageBase addItemsToCart(ProductListPageBase mainPage, List<String> productNames);
+
+    public abstract TopMainMenuBase getTopMainMenu();
 }

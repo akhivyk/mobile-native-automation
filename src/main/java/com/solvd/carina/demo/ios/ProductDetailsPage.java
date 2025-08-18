@@ -2,6 +2,7 @@ package com.solvd.carina.demo.ios;
 
 import com.solvd.carina.demo.common.ProductDetailsPageBase;
 import com.solvd.carina.demo.common.ProductListPageBase;
+import com.solvd.carina.demo.ios.components.TopMainMenu;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
@@ -24,6 +25,9 @@ public class ProductDetailsPage extends ProductDetailsPageBase {
 
     @ExtendedFindBy(accessibilityId = "test-BACK TO PRODUCTS")
     private ExtendedWebElement backToAllProductsButton;
+
+    @ExtendedFindBy(accessibilityId = "headerContainer")
+    private TopMainMenu header;
 
     public ProductDetailsPage(WebDriver driver) {
         super(driver);
@@ -56,5 +60,9 @@ public class ProductDetailsPage extends ProductDetailsPageBase {
     public ProductListPageBase clickBackToAllProductsButton() {
         backToAllProductsButton.click();
         return initPage(getDriver(), ProductListPageBase.class);
+    }
+
+    public TopMainMenu getTopMainMenu() {
+        return header;
     }
 }

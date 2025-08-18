@@ -11,4 +11,6 @@ public abstract class SideBarMenuPageBase extends BasePage {
     public abstract LoginPageBase clickLogoutButton();
 
     public abstract boolean isLogoutButtonPresent();
+
+//    public abstract DrawingPageBase clickDrawingButton();
 }

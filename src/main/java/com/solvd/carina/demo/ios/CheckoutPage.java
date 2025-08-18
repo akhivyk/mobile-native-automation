@@ -2,6 +2,7 @@ package com.solvd.carina.demo.ios;
 
 import com.solvd.carina.demo.common.CheckoutPageBase;
 import com.solvd.carina.demo.common.OverviewPageBase;
+import com.solvd.carina.demo.ios.components.TopMainMenu;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
@@ -24,6 +25,9 @@ public class CheckoutPage extends CheckoutPageBase {
 
     @ExtendedFindBy(iosClassChain = "**/XCUIElementTypeOther[`name == \"test-Error message\"`]")
     private ExtendedWebElement errorMessage;
+
+    @ExtendedFindBy(accessibilityId = "headerContainer")
+    private TopMainMenu header;
 
     public CheckoutPage(WebDriver driver) {
         super(driver);
@@ -60,5 +64,9 @@ public class CheckoutPage extends CheckoutPageBase {
 
     public String getErrorMessageText() {
         return errorMessage.getText();
+    }
+
+    public TopMainMenu getTopMainMenu() {
+        return header;
     }
 }

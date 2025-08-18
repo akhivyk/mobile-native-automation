@@ -2,16 +2,15 @@ package com.solvd.carina.demo.android;
 
 import com.solvd.carina.demo.android.components.ProductListItemComponent;
 import com.solvd.carina.demo.android.components.SortComponent;
+import com.solvd.carina.demo.android.components.TopMainMenu;
 import com.solvd.carina.demo.common.CartPageBase;
 import com.solvd.carina.demo.common.ProductDetailsPageBase;
 import com.solvd.carina.demo.common.ProductListPageBase;
-import com.solvd.carina.demo.common.SideBarMenuPageBase;
 import com.solvd.carina.demo.common.components.ProductListItemComponentBase;
 import com.solvd.carina.demo.enums.SortingType;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.FindBy;
 
@@ -28,14 +27,11 @@ public class ProductListPage extends ProductListPageBase {
     @ExtendedFindBy(accessibilityId = "test-Item")
     private List<ProductListItemComponent> items;
 
-    @ExtendedFindBy(accessibilityId = "test-Menu")
-    private ExtendedWebElement menuButton;
-
-    @ExtendedFindBy(accessibilityId = "test-Cart")
-    private ExtendedWebElement cartButton;
-
     @ExtendedFindBy(accessibilityId = "test-Modal Selector Button")
     private ExtendedWebElement sortingButton;
+
+    @FindBy(xpath = "//android.view.ViewGroup[@content-desc='test-Menu']/..")
+    private TopMainMenu header;
 
     public ProductListPage(WebDriver driver) {
         super(driver);
@@ -72,22 +68,6 @@ public class ProductListPage extends ProductListPageBase {
                 .orElseThrow(() -> new NoSuchElementException("Item not found: " + itemName));
     }
 
-    public SideBarMenuPageBase openSideBarMenu() {
-        int x = (int) (menuButton.getLocation().getX() + menuButton.getSize().getWidth() * 0.54);
-        int y = (int) (menuButton.getLocation().getY() + menuButton.getSize().getHeight() * 0.9);
-        tap(x, y);
-        return initPage(getDriver(), SideBarMenuPageBase.class);
-    }
-
-    public String getCountOfItemInCart() {
-        return cartButton.getElement().findElement(By.xpath("/android.view.ViewGroup//android.widget.TextView")).getText();
-    }
-
-    public CartPageBase clickCartButton() {
-        cartButton.click();
-        return initPage(getDriver(), CartPageBase.class);
-    }
-
     public void selectSortOption(SortingType sortingType) {
         sortingButton.click();
         SortComponent sortingContainer = new SortComponent(getDriver());
@@ -103,6 +83,10 @@ public class ProductListPage extends ProductListPageBase {
             ProductListItemComponent productListItemComponent = findItemOnPage(productName);
             productListItemComponent.clickAddToCartButton();
         }
-        return clickCartButton();
+        return getTopMainMenu().clickCartButton();
+    }
+
+    public TopMainMenu getTopMainMenu() {
+        return header;
     }
 }

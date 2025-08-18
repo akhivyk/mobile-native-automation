@@ -4,10 +4,10 @@ import com.solvd.carina.demo.common.ProductListPageBase;
 import com.solvd.carina.demo.ios.components.SortComponent;
 import com.solvd.carina.demo.common.CartPageBase;
 import com.solvd.carina.demo.common.ProductDetailsPageBase;
-import com.solvd.carina.demo.common.SideBarMenuPageBase;
 import com.solvd.carina.demo.common.components.ProductListItemComponentBase;
 import com.solvd.carina.demo.enums.SortingType;
 import com.solvd.carina.demo.ios.components.ProductListItemComponent;
+import com.solvd.carina.demo.ios.components.TopMainMenu;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
@@ -26,14 +26,11 @@ public class ProductListPage extends ProductListPageBase {
     @ExtendedFindBy(accessibilityId = "test-Item")
     private List<ProductListItemComponent> items;
 
-    @ExtendedFindBy(accessibilityId = "test-Menu")
-    private ExtendedWebElement menuButton;
-
-    @ExtendedFindBy(accessibilityId = "test-Cart")
-    private ExtendedWebElement cartButton;
-
     @ExtendedFindBy(accessibilityId = "test-Modal Selector Button")
     private ExtendedWebElement sortingButton;
+
+    @ExtendedFindBy(accessibilityId = "headerContainer")
+    private TopMainMenu header;
 
     public ProductListPage(WebDriver driver) {
         super(driver);
@@ -71,24 +68,6 @@ public class ProductListPage extends ProductListPageBase {
                 .orElseThrow(() -> new NoSuchElementException("Item not found: " + itemName));
     }
 
-    public SideBarMenuPageBase openSideBarMenu() {
-        int x = (int) (menuButton.getLocation().getX() + menuButton.getSize().getWidth() * 0.54);
-        int y = (int) (menuButton.getLocation().getY() + menuButton.getSize().getHeight() * 0.9);
-        tap(x, y);
-        return initPage(getDriver(), SideBarMenuPageBase.class);
-    }
-
-    public String getCountOfItemInCart() {
-        return cartButton.getAttribute("label");
-    }
-
-    public CartPageBase clickCartButton() {
-        int x = (int) (cartButton.getLocation().getX() + cartButton.getSize().getWidth() * 0.54);
-        int y = (int) (cartButton.getLocation().getY() + cartButton.getSize().getHeight() * 0.9);
-        tap(x, y);
-        return initPage(getDriver(), CartPageBase.class);
-    }
-
     public void selectSortOption(SortingType sortingType) {
         sortingButton.click();
         SortComponent sortingContainer = new SortComponent(getDriver());
@@ -104,6 +83,10 @@ public class ProductListPage extends ProductListPageBase {
             ProductListItemComponent productListItemComponent = findItemOnPage(productName);
             productListItemComponent.clickAddToCartButton();
         }
-        return clickCartButton();
+        return getTopMainMenu().clickCartButton();
+    }
+
+    public TopMainMenu getTopMainMenu() {
+        return header;
     }
 }

@@ -78,7 +78,7 @@ public class SwagLabsTest extends BaseTest {
         item.clickAddToCartButton();
         Assert.assertEquals(item.getTextFromRemoveButton(), expectedTextOnAddToCartButtonAfterClicking, "Text on " +
                 "add to cart button isn't equals to expected after clicking!");
-        Assert.assertEquals(mainPage.getCountOfItemInCart(), "1", "Count of items in cart isn't " +
+        Assert.assertEquals(mainPage.getTopMainMenu().getCountOfItemInCart(), "1", "Count of items in cart isn't " +
                 "equals to expected after adding to cart!");
     }
 
@@ -94,7 +94,7 @@ public class SwagLabsTest extends BaseTest {
 
         itemPage.clickAddToCartButton();
         mainPage = itemPage.clickBackToAllProductsButton();
-        CartPageBase cartPage = mainPage.clickCartButton();
+        CartPageBase cartPage = mainPage.getTopMainMenu().clickCartButton();
 
         Assert.assertFalse(cartPage.isCartListEmpty(), "Cart is empty.");
 
@@ -114,7 +114,7 @@ public class SwagLabsTest extends BaseTest {
         loginPage.selectUser(UserType.STANDARD_USER);
         ProductListPageBase mainPage = loginPage.clickLoginButton();
 
-        SideBarMenuPageBase menu = mainPage.openSideBarMenu();
+        SideBarMenuPageBase menu = mainPage.getTopMainMenu().openSideBarMenu();
         Assert.assertTrue(menu.isLogoutButtonPresent(), "Logout button isn't present in menu!");
 
         loginPage = menu.clickLogoutButton();
@@ -153,7 +153,7 @@ public class SwagLabsTest extends BaseTest {
         totalPriceFromMainPage += secondItemObject.getProductPrice();
         secondItemObject.clickAddToCartButton();
 
-        CartPageBase cartPage = mainPage.clickCartButton();
+        CartPageBase cartPage = mainPage.getTopMainMenu().clickCartButton();
         Assert.assertFalse(cartPage.isCartListEmpty(), "Cart is empty.");
 
         OverviewPageBase overviewPage = cartPage.completeCheckout(cartPage, R.TESTDATA.get("swagLabs_fName"), R.TESTDATA.get("swagLabs_lName"), R.TESTDATA.get("swagLabs_zipCode"));
@@ -216,4 +216,12 @@ public class SwagLabsTest extends BaseTest {
         Assert.assertEquals(expectedNames, actualNames,
                 "List of items isn't sorted by name in descending order");
     }
+
+//    @Test
+//    public void verifyDrawing() {
+//        MainPageBase mainPage = loginUtil.loginStandardUser();
+//        MenuPageBase menuPage = mainPage.openSideBarMenu();
+//        DrawingPageBase drawingPage = menuPage.clickDrawingButton();
+//        drawingPage.drawShape(getDriver());
+//    }
 }
