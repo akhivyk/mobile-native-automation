@@ -216,12 +216,4 @@ public class SwagLabsTest extends BaseTest {
         Assert.assertEquals(expectedNames, actualNames,
                 "List of items isn't sorted by name in descending order");
     }
-
-//    @Test
-//    public void verifyDrawing() {
-//        MainPageBase mainPage = loginUtil.loginStandardUser();
-//        MenuPageBase menuPage = mainPage.openSideBarMenu();
-//        DrawingPageBase drawingPage = menuPage.clickDrawingButton();
-//        drawingPage.drawShape(getDriver());
-//    }
 }

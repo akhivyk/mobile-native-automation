@@ -4,7 +4,6 @@ import com.solvd.carina.demo.common.CartPageBase;
 import com.solvd.carina.demo.common.CheckoutPageBase;
 import com.solvd.carina.demo.common.OverviewPageBase;
 import com.solvd.carina.demo.ios.components.CartItem;
-import com.solvd.carina.demo.ios.components.TopMainMenu;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
@@ -21,9 +20,6 @@ public class CartPage extends CartPageBase {
 
     @ExtendedFindBy(accessibilityId = "test-CHECKOUT")
     private ExtendedWebElement checkoutButton;
-
-    @ExtendedFindBy(accessibilityId = "headerContainer")
-    private TopMainMenu header;
 
     public CartPage(WebDriver driver) {
         super(driver);
@@ -51,9 +47,5 @@ public class CartPage extends CartPageBase {
         checkoutPage.inputLastName(lastName);
         checkoutPage.inputZipCode(zipCode);
         return checkoutPage.clickContinueButton();
-    }
-
-    public TopMainMenu getTopMainMenu() {
-        return header;
     }
 }

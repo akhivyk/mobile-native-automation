@@ -7,7 +7,6 @@ import com.solvd.carina.demo.common.ProductDetailsPageBase;
 import com.solvd.carina.demo.common.components.ProductListItemComponentBase;
 import com.solvd.carina.demo.enums.SortingType;
 import com.solvd.carina.demo.ios.components.ProductListItemComponent;
-import com.solvd.carina.demo.ios.components.TopMainMenu;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
@@ -28,9 +27,6 @@ public class ProductListPage extends ProductListPageBase {
 
     @ExtendedFindBy(accessibilityId = "test-Modal Selector Button")
     private ExtendedWebElement sortingButton;
-
-    @ExtendedFindBy(accessibilityId = "headerContainer")
-    private TopMainMenu header;
 
     public ProductListPage(WebDriver driver) {
         super(driver);
@@ -84,9 +80,5 @@ public class ProductListPage extends ProductListPageBase {
             productListItemComponent.clickAddToCartButton();
         }
         return getTopMainMenu().clickCartButton();
-    }
-
-    public TopMainMenu getTopMainMenu() {
-        return header;
     }
 }

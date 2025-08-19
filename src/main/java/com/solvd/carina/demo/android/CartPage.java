@@ -1,7 +1,6 @@
 package com.solvd.carina.demo.android;
 
 import com.solvd.carina.demo.android.components.CartItem;
-import com.solvd.carina.demo.android.components.TopMainMenu;
 import com.solvd.carina.demo.common.CartPageBase;
 import com.solvd.carina.demo.common.CheckoutPageBase;
 import com.solvd.carina.demo.common.OverviewPageBase;
@@ -9,7 +8,6 @@ import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -23,9 +21,6 @@ public class CartPage extends CartPageBase {
 
     @ExtendedFindBy(accessibilityId = "test-CHECKOUT")
     private ExtendedWebElement checkoutButton;
-
-    @FindBy(xpath = "//android.view.ViewGroup[@content-desc='test-Menu']/..")
-    private TopMainMenu header;
 
     public CartPage(WebDriver driver) {
         super(driver);
@@ -63,9 +58,5 @@ public class CartPage extends CartPageBase {
         checkoutPage.inputLastName(lastName);
         checkoutPage.inputZipCode(zipCode);
         return checkoutPage.clickContinueButton();
-    }
-
-    public TopMainMenu getTopMainMenu() {
-        return header;
     }
 }

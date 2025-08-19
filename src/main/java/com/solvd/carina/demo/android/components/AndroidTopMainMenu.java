@@ -1,16 +1,15 @@
 package com.solvd.carina.demo.android.components;
 
+import com.solvd.carina.demo.common.BasePage;
 import com.solvd.carina.demo.common.CartPageBase;
 import com.solvd.carina.demo.common.SideBarMenuPageBase;
 import com.solvd.carina.demo.common.components.TopMainMenuBase;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import io.appium.java_client.MobileBy;
-import org.openqa.selenium.By;
-import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 
-public class TopMainMenu extends TopMainMenuBase {
+public class AndroidTopMainMenu extends BasePage implements TopMainMenuBase {
 
     @ExtendedFindBy(accessibilityId = "test-Menu")
     private ExtendedWebElement menuButton;
@@ -18,14 +17,12 @@ public class TopMainMenu extends TopMainMenuBase {
     @ExtendedFindBy(accessibilityId = "test-Cart")
     private ExtendedWebElement cartButton;
 
-    public TopMainMenu(WebDriver driver, SearchContext searchContext) {
-        super(driver, searchContext);
+    public AndroidTopMainMenu(WebDriver driver) {
+        super(driver);
     }
 
     public SideBarMenuPageBase openSideBarMenu() {
-        int x = (int) (menuButton.getLocation().getX() + menuButton.getSize().getWidth() * 0.54);
-        int y = (int) (menuButton.getLocation().getY() + menuButton.getSize().getHeight() * 0.9);
-        tap(x, y);
+        menuButton.click();
         return initPage(getDriver(), SideBarMenuPageBase.class);
     }
 

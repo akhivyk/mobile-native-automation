@@ -1,13 +1,11 @@
 package com.solvd.carina.demo.android;
 
-import com.solvd.carina.demo.android.components.TopMainMenu;
 import com.solvd.carina.demo.common.CheckoutPageBase;
 import com.solvd.carina.demo.common.OverviewPageBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.FindBy;
 
 @DeviceType(pageType = DeviceType.Type.ANDROID_PHONE, parentClass = CheckoutPageBase.class)
 public class CheckoutPage extends CheckoutPageBase {
@@ -26,9 +24,6 @@ public class CheckoutPage extends CheckoutPageBase {
 
     @ExtendedFindBy(androidUIAutomator = "new UiSelector().description(\"test-Error message\").childSelector(new UiSelector().className(\"android.widget.TextView\").textContains(\"Postal Code is required\"))")
     private ExtendedWebElement errorMessage;
-
-    @FindBy(xpath = "//android.view.ViewGroup[@content-desc='test-Menu']/..")
-    private TopMainMenu header;
 
     public CheckoutPage(WebDriver driver) {
         super(driver);
@@ -65,9 +60,5 @@ public class CheckoutPage extends CheckoutPageBase {
 
     public String getErrorMessageText() {
         return errorMessage.getText();
-    }
-
-    public TopMainMenu getTopMainMenu() {
-        return header;
     }
 }

@@ -1,6 +1,5 @@
 package com.solvd.carina.demo.android;
 
-import com.solvd.carina.demo.android.components.TopMainMenu;
 import com.solvd.carina.demo.common.ProductDetailsPageBase;
 import com.solvd.carina.demo.common.ProductListPageBase;
 import com.zebrunner.carina.utils.factory.DeviceType;
@@ -29,9 +28,6 @@ public class ProductDetailsPage extends ProductDetailsPageBase {
 
     @ExtendedFindBy(androidUIAutomator = "new UiSelector().description(\"test-Description\").childSelector(new UiSelector().className(\"android.widget.TextView\").instance(1))")
     private ExtendedWebElement subtitleLabel;
-
-    @FindBy(xpath = "//android.view.ViewGroup[@content-desc='test-Menu']/..")
-    private TopMainMenu header;
 
     public ProductDetailsPage(WebDriver driver) {
         super(driver);
@@ -64,9 +60,5 @@ public class ProductDetailsPage extends ProductDetailsPageBase {
     public ProductListPageBase clickBackToAllProductsButton() {
         backToAllProductsButton.click();
         return initPage(getDriver(), ProductListPageBase.class);
-    }
-
-    public TopMainMenu getTopMainMenu() {
-        return header;
     }
 }

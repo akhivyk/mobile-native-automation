@@ -2,7 +2,6 @@ package com.solvd.carina.demo.android;
 
 import com.solvd.carina.demo.android.components.ProductListItemComponent;
 import com.solvd.carina.demo.android.components.SortComponent;
-import com.solvd.carina.demo.android.components.TopMainMenu;
 import com.solvd.carina.demo.common.CartPageBase;
 import com.solvd.carina.demo.common.ProductDetailsPageBase;
 import com.solvd.carina.demo.common.ProductListPageBase;
@@ -29,9 +28,6 @@ public class ProductListPage extends ProductListPageBase {
 
     @ExtendedFindBy(accessibilityId = "test-Modal Selector Button")
     private ExtendedWebElement sortingButton;
-
-    @FindBy(xpath = "//android.view.ViewGroup[@content-desc='test-Menu']/..")
-    private TopMainMenu header;
 
     public ProductListPage(WebDriver driver) {
         super(driver);
@@ -84,9 +80,5 @@ public class ProductListPage extends ProductListPageBase {
             productListItemComponent.clickAddToCartButton();
         }
         return getTopMainMenu().clickCartButton();
-    }
-
-    public TopMainMenu getTopMainMenu() {
-        return header;
     }
 }

@@ -1,23 +1,23 @@
 package com.solvd.carina.demo.ios.components;
 
+import com.solvd.carina.demo.common.BasePage;
 import com.solvd.carina.demo.common.CartPageBase;
 import com.solvd.carina.demo.common.SideBarMenuPageBase;
 import com.solvd.carina.demo.common.components.TopMainMenuBase;
 import com.zebrunner.carina.webdriver.decorator.ExtendedWebElement;
 import com.zebrunner.carina.webdriver.locator.ExtendedFindBy;
-import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 
-public class TopMainMenu extends TopMainMenuBase {
+public class IOSTopMainMenu extends BasePage implements TopMainMenuBase {
 
-    @ExtendedFindBy(accessibilityId = "test-Menu")
+    @ExtendedFindBy(iosPredicate = "name == \"test-Menu\"")
     private ExtendedWebElement menuButton;
 
     @ExtendedFindBy(accessibilityId = "test-Cart")
     private ExtendedWebElement cartButton;
 
-    public TopMainMenu(WebDriver driver, SearchContext searchContext) {
-        super(driver, searchContext);
+    public IOSTopMainMenu(WebDriver driver) {
+        super(driver);
     }
 
     public SideBarMenuPageBase openSideBarMenu() {

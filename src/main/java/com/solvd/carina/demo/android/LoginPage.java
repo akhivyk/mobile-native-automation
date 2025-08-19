@@ -1,6 +1,5 @@
 package com.solvd.carina.demo.android;
 
-import com.solvd.carina.demo.android.components.TopMainMenu;
 import com.solvd.carina.demo.common.LoginPageBase;
 import com.solvd.carina.demo.common.ProductListPageBase;
 import com.solvd.carina.demo.constants.TimeConstant;
@@ -28,9 +27,6 @@ public class LoginPage extends LoginPageBase {
 
     @ExtendedFindBy(androidUIAutomator = "new UiSelector().description(\"test-Error message\").childSelector(new UiSelector().className(\"android.widget.TextView\"))")
     private ExtendedWebElement errorMessage;
-
-    @FindBy(xpath = "//android.view.ViewGroup[@content-desc='test-Menu']/..")
-    private TopMainMenu header;
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -67,9 +63,5 @@ public class LoginPage extends LoginPageBase {
 
     public String getErrorMessageText() {
         return errorMessage.getText();
-    }
-
-    public TopMainMenu getTopMainMenu() {
-        return header;
     }
 }
